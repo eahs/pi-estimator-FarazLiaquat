@@ -23,8 +23,24 @@ namespace PiEstimator
         static double EstimatePi(long n)
         {
             Random rand = new Random(System.Environment.TickCount);
-            double pi = 0.0;
-
+            double xpos, ypos;
+            double inner = 0;
+            double outer = 0;
+            for (int i = 0; i < n; i++)
+            {
+                xpos = Math.Round((rand.NextDouble() / -1), 15) * (rand.Next(0, 2) * 2 - 1);
+                ypos = Math.Round((rand.NextDouble() / -1), 15) * (rand.Next(0, 2) * 2 - 1);;
+                if (Math.Sqrt((xpos*xpos)+(ypos*ypos))<=1) 
+                {
+                    inner += 1;
+                }
+                else
+                {
+                    outer += 1;
+                }
+            }
+            double pi = 0;
+            pi = (4*inner)/(inner + outer);
             // TODO: Calculate Pi
 
             return pi;
